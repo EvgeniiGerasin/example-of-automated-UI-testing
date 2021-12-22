@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+# vscode
+.vscode
+# other
+chromedriver.exe
+result
+report
+
 # Distribution / packaging
 .Python
 build/

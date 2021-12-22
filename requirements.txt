@@ -1,0 +1,6 @@
+selenium
+requests
+pytest
+allure-pytest
+pytest-xdist
+pytest-rerunfailures
