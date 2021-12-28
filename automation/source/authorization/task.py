@@ -1,4 +1,5 @@
 import allure
+from docs.descriptions import BaseDescription
 
 from source.authorization import Locator
 from config.config import CommonTestData
@@ -58,6 +59,14 @@ class TaskAuthorizationPage(BasePage):
         username=CommonTestData.USERNAMES[0],
         password=CommonTestData.PASSWORD,
     ):
+        report = BaseDescription.create(
+            {
+                'stand': CommonTestData.URL_STAND,
+                'username': username,
+                'password': password
+            }
+        )
+        allure.dynamic.description_html(report)
         FieldUsername(self.driver).enter_username(
             text=username
         )
