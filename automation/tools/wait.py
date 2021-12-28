@@ -51,7 +51,26 @@ class CastomWait:
     
     CONDITION = True
 
-    @classmethod
-    def run(cls, timeout) -> None:
-        if cls.CONDITION:
-            pass
+    def __init__(self) -> None:
+        self.condition = True
+
+    
+    def run(self, timeout=None) -> None:
+        pass
+
+# b = CastomWait()
+# print(b.condition)
+# b.condition = False
+# print(b.condition)
+# print(b.condition)
+# b.run(5)
+# class A:
+
+#     def __init__(self, f) -> None:
+#         self.f = f
+    
+#     def func(self):
+#         self.f
+
+# a = A(b.run(5))
+# a.func()
