@@ -3,6 +3,7 @@ import allure
 
 from source.authorization.task import TaskAuthorizationPage
 from config.config import CommonTestData
+from docs.links import Links
 
 
 @allure.epic('Authorization')
@@ -12,6 +13,7 @@ class TestAutorization:
         'username', CommonTestData.USERNAMES
     )
     @allure.title('Enter "standard_user"')
+    @allure.link(Links.TEST_URL, name='Test case')
     def test_authorization(self, web_driver, username):
         with allure.step('Arrange'):
             job = TaskAuthorizationPage(web_driver)
