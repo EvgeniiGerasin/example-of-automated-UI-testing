@@ -1,10 +1,12 @@
 from pytest import fixture, UsageError
+import allure
 
 from tools.helper import Screenshot
 from tools.driver import BrowserSelect
 from config.config import Browser
 from config.config import CommonTestData
 from tools.helper import Report
+from tools.logger import Data
 
 
 def pytest_addoption(parser):
@@ -58,6 +60,11 @@ def web_driver(request) -> object:
     # screenshot of the screen before finishing work
     Screenshot().shot(driver, 'Окно после завершения теста')
     # 
-    Report.attachment_json(Browser.XPATH_LOG, 'xpath log')
+    # Report.attachment_json(Browser.XPATH_LOG, 'xpath log')
+    allure.attach(
+        Data.ACTION_ELEMENTS,
+        'data',
+        allure.attachment_type.TEXT
+    )
     # closing connection
     driver.quit()
