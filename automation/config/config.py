@@ -37,6 +37,7 @@ class Browser:
             'name': 'Unknown Name'
         }
     }
+    XPATH_LOG = str()
 
 
 class CommonTestData:

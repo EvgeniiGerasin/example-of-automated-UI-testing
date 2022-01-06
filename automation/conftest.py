@@ -4,6 +4,7 @@ from tools.helper import Screenshot
 from tools.driver import BrowserSelect
 from config.config import Browser
 from config.config import CommonTestData
+from tools.helper import Report
 
 
 def pytest_addoption(parser):
@@ -56,5 +57,7 @@ def web_driver(request) -> object:
     yield driver
     # screenshot of the screen before finishing work
     Screenshot().shot(driver, 'Окно после завершения теста')
+    # 
+    Report.attachment_json(Browser.XPATH_LOG, 'xpath log')
     # closing connection
     driver.quit()
