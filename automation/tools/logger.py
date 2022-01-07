@@ -1,8 +1,11 @@
-import allure
+class Logger:
 
+    _TEXT_LOGGER = ''
 
-class Data:
+    @classmethod
+    def put_to_logger(cls, text: str):
+        cls._TEXT_LOGGER += text + '\n'
 
-    ACTION_ELEMENTS = 'asdasdasd\n dfgdfgdfgdfg\n dfgdfgdf\n'
-
-
+    @classmethod
+    def get_from_logger(cls):
+        return cls._TEXT_LOGGER
