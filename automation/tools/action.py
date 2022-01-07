@@ -7,6 +7,7 @@ import selenium.common.exceptions as e
 
 from tools.wait import CastomWait, WaitElement
 from config.config import Browser
+from tools.logger import Logger
 
 
 
@@ -37,7 +38,7 @@ class ActionCommon(Action):
         - mask (bool): ожидания пропадания маски
         - element (bool): ожидания ожидания элемента по Locatorу
         """
-        Browser.XPATH_LOG += locator + '\n'
+        Logger.put_to_logger(locator + '\n')
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -195,7 +196,7 @@ class ActionCommon(Action):
         - list_ (bool): ожидания загрузки выпадающего списка
         - element (bool): ожидания ожидания элемента по Locatorу
         """
-        Browser.XPATH_LOG += locator + '\n' + f'>>>data: {text} \n'
+        Logger.put_to_logger(locator + '\n')
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)

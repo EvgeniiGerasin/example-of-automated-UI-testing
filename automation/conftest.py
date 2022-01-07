@@ -5,8 +5,7 @@ from tools.helper import Screenshot
 from tools.driver import BrowserSelect
 from config.config import Browser
 from config.config import CommonTestData
-from tools.helper import Report
-from tools.logger import Data
+from tools.logger import Logger
 
 
 def pytest_addoption(parser):
@@ -62,7 +61,7 @@ def web_driver(request) -> object:
     # 
     # Report.attachment_json(Browser.XPATH_LOG, 'xpath log')
     allure.attach(
-        Data.ACTION_ELEMENTS,
+        Logger.get_from_logger(),
         'data',
         allure.attachment_type.TEXT
     )
