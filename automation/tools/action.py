@@ -10,7 +10,6 @@ from config.config import Browser
 from tools.logger import Logger
 
 
-
 class Action:
     """Содержит методы для применения к объяктам страницы
     """
@@ -38,7 +37,7 @@ class ActionCommon(Action):
         - mask (bool): ожидания пропадания маски
         - element (bool): ожидания ожидания элемента по Locatorу
         """
-        Logger.put_to_logger('Click:' + locator + '\n')
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -65,6 +64,7 @@ class ActionCommon(Action):
         - mask (bool): ожидания пропадания маски
         - element (bool): ожидания ожидания элемента по Locatorу
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -96,7 +96,7 @@ class ActionCommon(Action):
         :Return:
         - result_search (list: object): список найденых на странице объектов
         """
-        CastomWait.run(timeout)
+        Logger.record(text=locator)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -131,7 +131,7 @@ class ActionCommon(Action):
         -   number_element(int):количество найденых элементов
         - result_search (list: object): список найденых на странице объектов
         """
-        CastomWait.run(timeout)
+        Logger.record(text=locator)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -166,7 +166,7 @@ class ActionCommon(Action):
         :Return:
         - text (str): извлеченный текст
         """
-        CastomWait.run(timeout)
+        Logger.record(text=locator)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -196,8 +196,7 @@ class ActionCommon(Action):
         - list_ (bool): ожидания загрузки выпадающего списка
         - element (bool): ожидания ожидания элемента по Locatorу
         """
-        Logger.put_to_logger(f'Keys ({text}):' + locator + '\n')
-        CastomWait.run(timeout)
+        Logger.record(text=locator, data=text)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -228,6 +227,7 @@ class ActionCommon(Action):
         - mask (bool): ожидания пропадания маски
         - element (bool): ожидания ожидания элемента по Locatorу
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -266,6 +266,7 @@ class ActionCommon(Action):
         - element (bool): ожидания ожидания элемента по Locatorу
 
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -297,6 +298,7 @@ class ActionCommon(Action):
         - mask (bool): ожидания пропадания маски
         - element (bool): ожидания ожидания элемента по Locatorу
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -327,6 +329,7 @@ class ActionCommon(Action):
         - mask (bool): ожидания пропадания маски
         - element (bool): ожидания ожидания элемента по Locatorу
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -358,6 +361,7 @@ class ActionCommon(Action):
         :Return:
         - text (str): извлеченный текст
         """
+        Logger.record(text=locator, data=attribute)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -391,6 +395,7 @@ class ActionCommon(Action):
         Returns:
         - bool: True or False
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -423,6 +428,7 @@ class ActionCommon(Action):
         Returns:
         - bool: True or False
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -455,6 +461,7 @@ class ActionCommon(Action):
         Returns:
         - bool: True or False
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -474,6 +481,7 @@ class ActionCommon(Action):
         - description (str): описание для имени сриншота.
         - delay (float): задержка перед скриншотом
         """
+        Logger.record(text=description)
         if delay:
             sleep(delay)
         scr = self._driver.get_screenshot_as_png()
@@ -488,7 +496,7 @@ class ActionCommon(Action):
         locator: str,
         timeout: int = None,
         element: bool = True,
-    )-> None:
+    ) -> None:
         """Метод для скролинга страницы вправо
         :Args:
         - locator (str): Locator элемента
@@ -497,19 +505,23 @@ class ActionCommon(Action):
         - mask (bool): ожидания пропадания маски
         - element (bool): ожидания ожидания элемента по Locatorу
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
-        try:    
-            self._driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            horizontal_bar_width = self._driver.find_element_by_xpath(locator).rect['width']
+        try:
+            self._driver.execute_script(
+                "window.scrollTo(0, document.body.scrollHeight);")
+            horizontal_bar_width = self._driver.find_element_by_xpath(
+                locator).rect['width']
             slider = self._driver.find_element_by_xpath(locator)
-            ActionChains(self._driver).click_and_hold(slider).move_by_offset(horizontal_bar_width, 0).release().perform()
+            ActionChains(self._driver).click_and_hold(slider).move_by_offset(
+                horizontal_bar_width, 0).release().perform()
         except:
             ExceptionHandler(self._driver)._retry_action(
                 locator=locator,
                 action='scroll'
-            )    
+            )
 
     def is_displayed(
         self,
@@ -529,6 +541,7 @@ class ActionCommon(Action):
         Returns:
         - bool: True or False
         """
+        Logger.record(text=locator)
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -542,6 +555,7 @@ class ActionCommon(Action):
                 locator=locator,
                 action='is displayed'
             )
+
 
 class ExceptionHandler(Action):
 
@@ -622,14 +636,17 @@ class ExceptionHandler(Action):
                 elem: object = self._driver.find_element_by_xpath(
                     locator
                 )
-                return elem.is_displayed()                
+                return elem.is_displayed()
             elif action == 'get element object':
                 return self._driver.find_element_by_xpath(locator)
             elif action == 'scroll':
-                self._driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                horizontal_bar_width = self._driver.find_element_by_xpath(locator).rect['width']
+                self._driver.execute_script(
+                    "window.scrollTo(0, document.body.scrollHeight);")
+                horizontal_bar_width = self._driver.find_element_by_xpath(
+                    locator).rect['width']
                 slider = self._driver.find_element_by_xpath(locator)
-                ActionChains(self._driver).click_and_hold(slider).move_by_offset(horizontal_bar_width/2, 0).release().perform()       
+                ActionChains(self._driver).click_and_hold(slider).move_by_offset(
+                    horizontal_bar_width/2, 0).release().perform()
         except e.ElementClickInterceptedException as error:
             raise e.ElementClickInterceptedException(
                 msg=f'Locator: {locator} | {error.msg}', stacktrace=error.stacktrace
