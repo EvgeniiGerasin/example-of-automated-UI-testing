@@ -58,11 +58,10 @@ def web_driver(request) -> object:
     yield driver
     # screenshot of the screen before finishing work
     Screenshot().shot(driver, 'Окно после завершения теста')
-    # 
-    # Report.attachment_json(Browser.XPATH_LOG, 'xpath log')
+    # logging
     allure.attach(
         Logger.get_from_logger(),
-        'data',
+        'logs',
         allure.attachment_type.TEXT
     )
     # closing connection
