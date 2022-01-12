@@ -32,6 +32,8 @@ def pytest_addoption(parser):
 
 @fixture(scope='function')
 def web_driver(request) -> object:
+    # setup logger
+    Logger.setup_logger()
     # get command line args
     browser_version = request.config.getoption("browser_version")
     local_perform = request.config.getoption("local")
