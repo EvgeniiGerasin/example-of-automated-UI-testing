@@ -4,9 +4,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import selenium.common.exceptions as e
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from tools.wait import CastomWait, WaitElement
-from config.config import Browser
 from tools.logger import Logger
 
 
@@ -529,32 +530,63 @@ class ActionCommon(Action):
         timeout: int = None,
         element: bool = True,
     ) -> bool:
-        """Получение ифнормации о видимости элемента для пользователя
+        """Use if you need check visible of element on a page.
+        Return true if element is visible else false
 
         :Args:
-        - locator (str): Locator элемента
+        - locator (str): локатор элемента
         - timeout (int): время ожидания
         - loading (bool): ожидания загрузки
         - mask (bool): ожидания пропадания маски
-        - element (bool): ожидания ожидания элемента по Locatorу
+        - element (bool): ожидания ожидания элемента по локатору
 
         Returns:
         - bool: True or False
         """
         Logger.record(text=locator)
-        CastomWait.run(timeout)
+        if not timeout:
+            timeout = 10
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
-            elem: object = self._driver.find_element_by_xpath(
-                locator
+            WebDriverWait(self._driver, timeout).until(
+                EC.presence_of_element_located((By.XPATH, locator))
             )
-            return elem.is_displayed()
+            return True
         except:
-            ExceptionHandler(self._driver)._retry_action(
-                locator=locator,
-                action='is displayed'
+            return False
+
+    def is_not_displayed(
+        self,
+        locator: str,
+        timeout: int = None,
+        element: bool = True,
+    ) -> bool:
+        """Use if you need check not visible of element on a page.
+        Return true if element is not visible else false
+
+        :Args:
+        - locator (str): локатор элемента
+        - timeout (int): время ожидания
+        - loading (bool): ожидания загрузки
+        - mask (bool): ожидания пропадания маски
+        - element (bool): ожидания ожидания элемента по локатору
+
+        Returns:
+        - bool: True or False
+        """
+        Logger.record(text=locator)
+        if not timeout:
+            timeout = 10
+        if element:
+            WaitElement.xpath(self._driver, locator, timeout)
+        try:
+            WebDriverWait(self._driver, timeout).until(
+                EC.invisibility_of_element_located((By.XPATH, locator))
             )
+            return True
+        except:
+            return False
 
 
 class ExceptionHandler(Action):
