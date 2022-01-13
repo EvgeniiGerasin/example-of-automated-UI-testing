@@ -17,7 +17,28 @@ class Asserts:
         - text_scr(str): текст скриншота
         """
         try:
-            assert self._action.len_elements(locator_element)[0]
+            assert self._action.is_displayed(locator_element)
+        except:
+            assert False, text_error
+        finally:
+            if text_scr:
+                self._action.shot(text_scr)
+    
+    def is_disenabled(
+        self,
+        locator_element: str,
+        text_error: str,
+        text_scr: str = None
+    ) -> None:
+        """Проверка отсутствия элемента
+
+        :Args:
+        - locator_element(str): локатор элемента
+        - text_error(str): текст ошибки
+        - text_scr(str): текст скриншота
+        """
+        try:
+            assert self._action.is_not_displayed(locator_element)
         except:
             assert False, text_error
         finally:
