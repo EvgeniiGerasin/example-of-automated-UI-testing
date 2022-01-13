@@ -76,12 +76,8 @@ class TaskAuthorizationPage(BasePage):
         ButtonLogin(self.driver).push_login()
 
     def assert_logging(self):
-        check, _ = self.action.len_elements(
-            locator=Locator.LEBEL_ERROR
+        self.asserts.is_disenabled(
+            Locator.LEBEL_ERROR,
+            text_error='Logging error',
+            text_scr='Logging scr'
         )
-        try:
-            assert check == 0
-        except:
-            assert False, 'Login error'
-        finally:
-            self.action.shot('After loging')
