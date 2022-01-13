@@ -528,7 +528,6 @@ class ActionCommon(Action):
         self,
         locator: str,
         timeout: int = None,
-        element: bool = True,
     ) -> bool:
         """Use if you need check visible of element on a page.
         Return true if element is visible else false
@@ -546,8 +545,6 @@ class ActionCommon(Action):
         Logger.record(text=locator)
         if not timeout:
             timeout = 10
-        if element:
-            WaitElement.xpath(self._driver, locator, timeout)
         try:
             WebDriverWait(self._driver, timeout).until(
                 EC.presence_of_element_located((By.XPATH, locator))
@@ -560,7 +557,6 @@ class ActionCommon(Action):
         self,
         locator: str,
         timeout: int = None,
-        element: bool = True,
     ) -> bool:
         """Use if you need check not visible of element on a page.
         Return true if element is not visible else false
@@ -578,8 +574,6 @@ class ActionCommon(Action):
         Logger.record(text=locator)
         if not timeout:
             timeout = 10
-        if element:
-            WaitElement.xpath(self._driver, locator, timeout)
         try:
             WebDriverWait(self._driver, timeout).until(
                 EC.invisibility_of_element_located((By.XPATH, locator))
