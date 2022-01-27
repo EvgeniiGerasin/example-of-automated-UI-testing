@@ -6,8 +6,7 @@ from selenium.webdriver.common.keys import Keys
 import selenium.common.exceptions as e
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-from tools.wait import CastomWait, WaitElement
+from tools.wait import WaitElement
 from tools.logger import Logger
 
 
@@ -15,8 +14,9 @@ class Action:
     """Содержит методы для применения к объяктам страницы
     """
 
-    def __init__(self, driver) -> None:
+    def __init__(self, driver, wait=None) -> None:
         self._driver = driver
+        self._wait_func = wait
 
 
 class ActionCommon(Action):
@@ -39,7 +39,12 @@ class ActionCommon(Action):
         - element (bool): ожидания ожидания элемента по Locatorу
         """
         Logger.record(text=locator)
-        CastomWait.run(timeout)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -66,7 +71,12 @@ class ActionCommon(Action):
         - element (bool): ожидания ожидания элемента по Locatorу
         """
         Logger.record(text=locator)
-        CastomWait.run(timeout)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -98,6 +108,12 @@ class ActionCommon(Action):
         - result_search (list: object): список найденых на странице объектов
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -133,6 +149,12 @@ class ActionCommon(Action):
         - result_search (list: object): список найденых на странице объектов
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -168,6 +190,12 @@ class ActionCommon(Action):
         - text (str): извлеченный текст
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -229,6 +257,12 @@ class ActionCommon(Action):
         - element (bool): ожидания ожидания элемента по Locatorу
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -268,6 +302,12 @@ class ActionCommon(Action):
 
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -300,6 +340,12 @@ class ActionCommon(Action):
         - element (bool): ожидания ожидания элемента по Locatorу
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -331,6 +377,12 @@ class ActionCommon(Action):
         - element (bool): ожидания ожидания элемента по Locatorу
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -397,6 +449,12 @@ class ActionCommon(Action):
         - bool: True or False
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -430,6 +488,12 @@ class ActionCommon(Action):
         - bool: True or False
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -463,6 +527,12 @@ class ActionCommon(Action):
         - bool: True or False
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -507,6 +577,12 @@ class ActionCommon(Action):
         - element (bool): ожидания ожидания элемента по Locatorу
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         CastomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
@@ -543,6 +619,12 @@ class ActionCommon(Action):
         - bool: True or False
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         if not timeout:
             timeout = 10
         try:
@@ -572,6 +654,12 @@ class ActionCommon(Action):
         - bool: True or False
         """
         Logger.record(text=locator)
+        if self._wait_func:
+            self._wait_func.run(
+                driver=self._driver, 
+                timeout=timeout,
+                default=True
+            )
         if not timeout:
             timeout = 10
         try:

@@ -6,6 +6,7 @@ from config.config import CommonTestData
 from tools.helper import Report
 from tools.action import ActionCommon
 from tools.asserts import Asserts
+from castom.wait import CastomWait
 
 
 class BasePage:
@@ -16,6 +17,7 @@ class BasePage:
         self.action = ActionCommon(self.driver)
         self.report = Report()
         self.asserts = Asserts(self.action)
+        self.wait = CastomWait()
 
 
 class FieldUsername(BasePage):
