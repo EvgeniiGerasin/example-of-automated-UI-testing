@@ -10,6 +10,6 @@ class BaseDescription:
         values = ''
         for key, value in data.items():
             values += (
-                f'<li><b>{key}</b>: {value}</li>'
+                f'<li><b>{key}</b>:<xmp>{value}</xmp></li>'
             )
         return description.format(values=values)
