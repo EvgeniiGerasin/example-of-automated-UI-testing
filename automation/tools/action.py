@@ -226,6 +226,11 @@ class ActionCommon(Action):
         - element (bool): ожидания ожидания элемента по Locatorу
         """
         Logger.record(text=locator, data=text)
+        if self._custom_wait:
+            self._custom_wait.run(
+                driver=self._driver, 
+                default=True
+            )
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
