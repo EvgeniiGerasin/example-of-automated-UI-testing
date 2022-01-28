@@ -263,7 +263,7 @@ class ActionCommon(Action):
                 timeout=timeout,
                 default=True
             )
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -308,7 +308,7 @@ class ActionCommon(Action):
                 timeout=timeout,
                 default=True
             )
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -346,7 +346,7 @@ class ActionCommon(Action):
                 timeout=timeout,
                 default=True
             )
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -383,7 +383,7 @@ class ActionCommon(Action):
                 timeout=timeout,
                 default=True
             )
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -415,7 +415,7 @@ class ActionCommon(Action):
         - text (str): извлеченный текст
         """
         Logger.record(text=locator, data=attribute)
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -455,7 +455,7 @@ class ActionCommon(Action):
                 timeout=timeout,
                 default=True
             )
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -494,7 +494,7 @@ class ActionCommon(Action):
                 timeout=timeout,
                 default=True
             )
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -533,7 +533,7 @@ class ActionCommon(Action):
                 timeout=timeout,
                 default=True
             )
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:
@@ -583,7 +583,7 @@ class ActionCommon(Action):
                 timeout=timeout,
                 default=True
             )
-        CastomWait.run(timeout)
+        CustomWait.run(timeout)
         if element:
             WaitElement.xpath(self._driver, locator, timeout)
         try:

@@ -1,4 +1,4 @@
-class CastomWait:
+class CustomWait:
 
     _condition_1 = True
     _condition_2 = True
